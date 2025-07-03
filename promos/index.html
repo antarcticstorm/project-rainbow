@@ -6,328 +6,235 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
+
+    <style>
+        @layer components {
+            table {
+                background-color: var(--color-white);
+                border-radius: var(--rounded-lg);
+                padding: var(--spacing-6);
+                box-shadow: var(--shadow-xl);
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <div
-            class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
-            <div>
-                <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction"
-                    class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                    type="button">
-                    <span class="sr-only">Action button</span>
-                    Action
-                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
-                <!-- Dropdown menu -->
-                <div id="dropdownAction"
-                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownActionButton">
-                        <li>
-                            <a href="#"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reward</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Promote</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Activate
-                                account</a>
-                        </li>
-                    </ul>
-                    <div class="py-1">
-                        <a href="#"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete
-                            User</a>
-                    </div>
-                </div>
-            </div>
-            <label for="table-search" class="sr-only">Search</label>
-            <div class="relative">
-                <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                    </svg>
-                </div>
-                <input type="text" id="table-search-users"
-                    class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Search for users">
-            </div>
-        </div>
-        <table id="search-table"
-            class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 relative overflow-x-auto shadow-md sm:rounded-lg">
-            <thead>
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        <span class="flex items-center">
-                            Company Name
-                        </span>
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        <span class="flex items-center">
-                            Ticker
-                        </span>
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        <span class="flex items-center">
-                            Stock Price
-                        </span>
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        <span class="flex items-center">
-                            Market Capitalization
-                        </span>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Apple Inc.</td>
-                    <td class="px-6 py-4">AAPL</td>
-                    <td class="px-6 py-4">$192.58</td>
-                    <td class="px-6 py-4">$3.04T</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Microsoft
-                        Corporation</td>
-                    <td class="px-6 py-4">MSFT</td>
-                    <td class="px-6 py-4">$340.54</td>
-                    <td class="px-6 py-4">$2.56T</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Alphabet Inc.</td>
-                    <td class="px-6 py-4">GOOGL</td>
-                    <td class="px-6 py-4">$134.12</td>
-                    <td class="px-6 py-4">$1.72T</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Amazon.com Inc.
-                    </td>
-                    <td class="px-6 py-4">AMZN</td>
-                    <td class="px-6 py-4">$138.01</td>
-                    <td class="px-6 py-4">$1.42T</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">NVIDIA Corporation
-                    </td>
-                    <td class="px-6 py-4">NVDA</td>
-                    <td class="px-6 py-4">$466.19</td>
-                    <td class="px-6 py-4">$1.16T</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Tesla Inc.</td>
-                    <td class="px-6 py-4">TSLA</td>
-                    <td class="px-6 py-4">$255.98</td>
-                    <td class="px-6 py-4">$811.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Meta Platforms
-                        Inc.</td>
-                    <td class="px-6 py-4">META</td>
-                    <td class="px-6 py-4">$311.71</td>
-                    <td class="px-6 py-4">$816.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Berkshire Hathaway
-                        Inc.</td>
-                    <td class="px-6 py-4">BRK.B</td>
-                    <td class="px-6 py-4">$354.08</td>
-                    <td class="px-6 py-4">$783.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">TSMC</td>
-                    <td class="px-6 py-4">TSM</td>
-                    <td class="px-6 py-4">$103.51</td>
-                    <td class="px-6 py-4">$538.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">UnitedHealth Group
-                        Incorporated
-                    </td>
-                    <td class="px-6 py-4">UNH</td>
-                    <td class="px-6 py-4">$501.96</td>
-                    <td class="px-6 py-4">$466.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Johnson & Johnson
-                    </td>
-                    <td class="px-6 py-4">JNJ</td>
-                    <td class="px-6 py-4">$172.85</td>
-                    <td class="px-6 py-4">$452.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">JPMorgan Chase &
-                        Co.</td>
-                    <td class="px-6 py-4">JPM</td>
-                    <td class="px-6 py-4">$150.23</td>
-                    <td class="px-6 py-4">$431.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Visa Inc.</td>
-                    <td class="px-6 py-4">V</td>
-                    <td class="px-6 py-4">$246.39</td>
-                    <td class="px-6 py-4">$519.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Eli Lilly and
-                        Company</td>
-                    <td class="px-6 py-4">LLY</td>
-                    <td class="px-6 py-4">$582.97</td>
-                    <td class="px-6 py-4">$552.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Walmart Inc.</td>
-                    <td class="px-6 py-4">WMT</td>
-                    <td class="px-6 py-4">$159.67</td>
-                    <td class="px-6 py-4">$429.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Samsung
-                        Electronics Co., Ltd.
-                    </td>
-                    <td class="px-6 py-4">005930.KS</td>
-                    <td class="px-6 py-4">$70.22</td>
-                    <td class="px-6 py-4">$429.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Procter & Gamble
-                        Co.</td>
-                    <td class="px-6 py-4">PG</td>
-                    <td class="px-6 py-4">$156.47</td>
-                    <td class="px-6 py-4">$366.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Nestlé S.A.</td>
-                    <td class="px-6 py-4">NESN.SW</td>
-                    <td class="px-6 py-4">$120.51</td>
-                    <td class="px-6 py-4">$338.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Roche Holding AG
-                    </td>
-                    <td class="px-6 py-4">ROG.SW</td>
-                    <td class="px-6 py-4">$296.00</td>
-                    <td class="px-6 py-4">$317.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Chevron
-                        Corporation</td>
-                    <td class="px-6 py-4">CVX</td>
-                    <td class="px-6 py-4">$160.92</td>
-                    <td class="px-6 py-4">$310.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">LVMH Moët Hennessy
-                        Louis Vuitton
-                    </td>
-                    <td class="px-6 py-4">MC.PA</td>
-                    <td class="px-6 py-4">$956.60</td>
-                    <td class="px-6 py-4">$478.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Pfizer Inc.</td>
-                    <td class="px-6 py-4">PFE</td>
-                    <td class="px-6 py-4">$35.95</td>
-                    <td class="px-6 py-4">$200.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Novo Nordisk A/S
-                    </td>
-                    <td class="px-6 py-4">NVO</td>
-                    <td class="px-6 py-4">$189.15</td>
-                    <td class="px-6 py-4">$443.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">PepsiCo, Inc.</td>
-                    <td class="px-6 py-4">PEP</td>
-                    <td class="px-6 py-4">$182.56</td>
-                    <td class="px-6 py-4">$311.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">ASML Holding N.V.
-                    </td>
-                    <td class="px-6 py-4">ASML</td>
-                    <td class="px-6 py-4">$665.72</td>
-                    <td class="px-6 py-4">$273.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">The Coca-Cola
-                        Company</td>
-                    <td class="px-6 py-4">KO</td>
-                    <td class="px-6 py-4">$61.37</td>
-                    <td class="px-6 py-4">$265.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Oracle Corporation
-                    </td>
-                    <td class="px-6 py-4">ORCL</td>
-                    <td class="px-6 py-4">$118.36</td>
-                    <td class="px-6 py-4">$319.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Merck & Co., Inc.
-                    </td>
-                    <td class="px-6 py-4">MRK</td>
-                    <td class="px-6 py-4">$109.12</td>
-                    <td class="px-6 py-4">$276.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Broadcom Inc.</td>
-                    <td class="px-6 py-4">AVGO</td>
-                    <td class="px-6 py-4">$861.80</td>
-                    <td class="px-6 py-4">$356.00B</td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white px-6 py-4">Mastercard
-                        Incorporated</td>
-                    <td class="px-6 py-4">MA</td>
-                    <td class="px-6 py-4">$421.44</td>
-                    <td class="px-6 py-4">$396.00B</td>
-                </tr>
-            </tbody>
-            </table>
-        </div>
-    </div>
+
+    <table id="search-table">
+        <thead>
+            <tr>
+                <th>
+                    <span class="flex items-center">
+                        Company Name
+                    </span>
+                </th>
+                <th>
+                    <span class="flex items-center">
+                        Ticker
+                    </span>
+                </th>
+                <th>
+                    <span class="flex items-center">
+                        Stock Price
+                    </span>
+                </th>
+                <th>
+                    <span class="flex items-center">
+                        Market Capitalization
+                    </span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Apple Inc.</td>
+                <td>AAPL</td>
+                <td>$192.58</td>
+                <td>$3.04T</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Microsoft Corporation</td>
+                <td>MSFT</td>
+                <td>$340.54</td>
+                <td>$2.56T</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Alphabet Inc.</td>
+                <td>GOOGL</td>
+                <td>$134.12</td>
+                <td>$1.72T</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Amazon.com Inc.</td>
+                <td>AMZN</td>
+                <td>$138.01</td>
+                <td>$1.42T</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">NVIDIA Corporation</td>
+                <td>NVDA</td>
+                <td>$466.19</td>
+                <td>$1.16T</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Tesla Inc.</td>
+                <td>TSLA</td>
+                <td>$255.98</td>
+                <td>$811.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Meta Platforms Inc.</td>
+                <td>META</td>
+                <td>$311.71</td>
+                <td>$816.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Berkshire Hathaway Inc.</td>
+                <td>BRK.B</td>
+                <td>$354.08</td>
+                <td>$783.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">TSMC</td>
+                <td>TSM</td>
+                <td>$103.51</td>
+                <td>$538.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">UnitedHealth Group Incorporated
+                </td>
+                <td>UNH</td>
+                <td>$501.96</td>
+                <td>$466.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Johnson & Johnson</td>
+                <td>JNJ</td>
+                <td>$172.85</td>
+                <td>$452.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">JPMorgan Chase & Co.</td>
+                <td>JPM</td>
+                <td>$150.23</td>
+                <td>$431.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Visa Inc.</td>
+                <td>V</td>
+                <td>$246.39</td>
+                <td>$519.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Eli Lilly and Company</td>
+                <td>LLY</td>
+                <td>$582.97</td>
+                <td>$552.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Walmart Inc.</td>
+                <td>WMT</td>
+                <td>$159.67</td>
+                <td>$429.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Samsung Electronics Co., Ltd.
+                </td>
+                <td>005930.KS</td>
+                <td>$70.22</td>
+                <td>$429.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Procter & Gamble Co.</td>
+                <td>PG</td>
+                <td>$156.47</td>
+                <td>$366.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Nestlé S.A.</td>
+                <td>NESN.SW</td>
+                <td>$120.51</td>
+                <td>$338.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Roche Holding AG</td>
+                <td>ROG.SW</td>
+                <td>$296.00</td>
+                <td>$317.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Chevron Corporation</td>
+                <td>CVX</td>
+                <td>$160.92</td>
+                <td>$310.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">LVMH Moët Hennessy Louis Vuitton
+                </td>
+                <td>MC.PA</td>
+                <td>$956.60</td>
+                <td>$478.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Pfizer Inc.</td>
+                <td>PFE</td>
+                <td>$35.95</td>
+                <td>$200.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Novo Nordisk A/S</td>
+                <td>NVO</td>
+                <td>$189.15</td>
+                <td>$443.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">PepsiCo, Inc.</td>
+                <td>PEP</td>
+                <td>$182.56</td>
+                <td>$311.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">ASML Holding N.V.</td>
+                <td>ASML</td>
+                <td>$665.72</td>
+                <td>$273.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">The Coca-Cola Company</td>
+                <td>KO</td>
+                <td>$61.37</td>
+                <td>$265.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Oracle Corporation</td>
+                <td>ORCL</td>
+                <td>$118.36</td>
+                <td>$319.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Merck & Co., Inc.</td>
+                <td>MRK</td>
+                <td>$109.12</td>
+                <td>$276.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Broadcom Inc.</td>
+                <td>AVGO</td>
+                <td>$861.80</td>
+                <td>$356.00B</td>
+            </tr>
+            <tr>
+                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Mastercard Incorporated</td>
+                <td>MA</td>
+                <td>$421.44</td>
+                <td>$396.00B</td>
+            </tr>
+        </tbody>
+    </table>
+
+
 
 
     <script type="text/javascript">
